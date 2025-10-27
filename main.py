@@ -4,10 +4,13 @@ def mostrar_menu():
     print("2. Listar todos os pacientes")
     print("3. Consultar paciente")
     print("4. Alterar dados de um paciente")
-    print("5. Sair")
+    print("5. Cadastrar consulta")
+    print("6. Listar consultas")
+    print("7. Sair")
 
 def main():
     pacientes = []
+    consultas = []
 
     while True:
         mostrar_menu()
@@ -66,9 +69,33 @@ def main():
         
             if not encontrado:
                 print("Paciente não encontrado")
-                
-            
+
         elif escolha == '5':
+            cpf = input("Digite o CPF do paciente:")
+            encontrado = False
+            for paciente in pacientes:
+                if cpf == paciente['cpf']:
+                    encontrado = True
+                    data_hora = input("Data e hora da consulta: ")
+                    especialidade = input("Especialidade: ")
+                    local = input("Local da consulta: ")
+                    valor = input("Valor da consulta: ")
+                    medico = input("Nome do médico: ")
+                    consultas.append({'data_hora': data_hora, 'especialidade': especialidade, 'local': local, 'valor': valor, 'medico': medico, 'cpf': cpf })
+                    print("Consulta cadastrada")
+
+            if not encontrado:
+                print("Paciente não encontrado")
+
+        elif escolha == '6':
+            if not consultas:
+                print("Nenhuma consulta cadastrada")
+            else:
+                print("\n=== Lista de Consultas ===")
+                for consulta in consultas:
+                    print("Data e hora:", consulta['data_hora'], "Especialidade:", consulta['especialidade'], "Local: ", consulta['local'], "valor:", consulta['valor'], "Médico:", consulta['medico'], "CPF do paciente:", consulta['cpf'])
+
+        elif escolha == '7':
             print("Saindo do programa!")
             break
         else:
