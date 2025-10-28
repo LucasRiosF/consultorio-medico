@@ -6,7 +6,8 @@ def mostrar_menu():
     print("4. Alterar dados de um paciente")
     print("5. Cadastrar consulta")
     print("6. Listar consultas")
-    print("7. Sair")
+    print("7. Alterar dados de uma consulta")
+    print("8. Sair")
 
 def main():
     pacientes = []
@@ -96,6 +97,38 @@ def main():
                     print("Data e hora:", consulta['data_hora'], "Especialidade:", consulta['especialidade'], "Local: ", consulta['local'], "valor:", consulta['valor'], "Médico:", consulta['medico'], "CPF do paciente:", consulta['cpf'])
 
         elif escolha == '7':
+            alterar = input("Digite o CPF do paciente")
+            alterar2 = input("Digite a data e hora da consulta")
+            encontrado = False
+            for consulta in consultas:
+                if alterar == consulta['cpf'] and alterar2 == consulta['data_hora']:
+                    encontrado = True
+                    nova_data = input(f"Data e hora [{consulta['data_hora']}]: ")
+                    if nova_data != "":
+                        consulta['data_hora'] = nova_data
+
+                    nova_espec = input(f"Especialidade [{consulta['especialidade']}]: ")
+                    if nova_espec != "":
+                        consulta['especialidade'] = nova_espec
+
+                    novo_local = input(f"Local [{consulta['local']}]: ")
+                    if novo_local != "":
+                        consulta['local'] = novo_local
+
+                    novo_valor = input(f"Valor [{consulta['valor']}]: ")
+                    if novo_valor != "":
+                        consulta['valor'] = novo_valor
+
+                    novo_medico = input(f"Médico [{consulta['medico']}]: ")
+                    if novo_medico != "":
+                        consulta['medico'] = novo_medico   
+
+                    print("Consulta atualizada!")
+                    print("Data e hora:", consulta['data_hora'], "- Especialidade:", consulta['especialidade'], "- Local:", consulta['local'], "- Valor:", consulta['valor'], "- Médico:", consulta['medico'],)
+            if not encontrado:
+                print("Consulta não encontrada")
+                
+        elif escolha == '8':
             print("Saindo do programa!")
             break
         else:
