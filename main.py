@@ -19,7 +19,13 @@ def main():
 
         if escolha == '1':
             nome = input("Nome do paciente: ")
-            idade = input("Idade do paciente: ")
+            while True:
+                idade = input("Idade do paciente: ")
+                if idade.isdigit():
+                    idade_int = int(idade)
+                    if idade_int > 0:
+                        break
+                print("Digite um número acima de zero para idade")
             cpf = input("CPF do paciente: ")
             endereco = input("Endereço do paciente: ")
             pacientes.append({'nome': nome, 'idade': idade, 'cpf': cpf, 'endereco': endereco})
@@ -30,7 +36,7 @@ def main():
             else:
                 print("\n=== Lista de Pacientes ===")
                 for paciente in pacientes:
-                    print("Nome:", paciente['nome'], "- Idade:", paciente['idade'])
+                    print("Nome:", paciente['nome'], "- Idade:", paciente['idade'], "-CPF:", paciente['cpf'], "-Endereço", paciente['endereco'])
 
         elif escolha == '3':
             busca = input("Digite o CPF ou nome do paciente: ")
@@ -97,8 +103,8 @@ def main():
                     print("Data e hora:", consulta['data_hora'], "Especialidade:", consulta['especialidade'], "Local: ", consulta['local'], "valor:", consulta['valor'], "Médico:", consulta['medico'], "CPF do paciente:", consulta['cpf'])
 
         elif escolha == '7':
-            alterar = input("Digite o CPF do paciente")
-            alterar2 = input("Digite a data e hora da consulta")
+            alterar = input("Digite o CPF do paciente: ")
+            alterar2 = input("Digite a data e hora da consulta: ")
             encontrado = False
             for consulta in consultas:
                 if alterar == consulta['cpf'] and alterar2 == consulta['data_hora']:
